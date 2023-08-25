@@ -7,9 +7,23 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
-import { PORT, CLIENT_URL } from './config/index.js';
+import mongoose from 'mongoose';
+import { PORT, CLIENT_URL, DB_URL } from './config/index.js';
 
 const app = express();
+
+mongoose.set('strictQuery', true);
+
+mongoose.connect(DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('DB connected!');
+});
 
 const corsOptions = {
   origin: CLIENT_URL,
