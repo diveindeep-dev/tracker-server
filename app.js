@@ -10,6 +10,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import { PORT, CLIENT_URL, DB_URL } from './config/index.js';
 
+import authRouter from './routes/auth.js';
+
 const app = express();
 
 mongoose.set('strictQuery', true);
@@ -39,6 +41,8 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
   res.send('Hello World: TRACKER-SERVER');
 });
+
+app.use('/api/auth', authRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
