@@ -13,6 +13,7 @@ import { PORT, CLIENT_URL, DB_URL } from './config/index.js';
 import authRouter from './routes/auth.js';
 import userRouter from './routes/user.js';
 import trackerRouter from './routes/tracker.js';
+import scheduleRouter from './routes/schedule.js';
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/tracker', trackerRouter);
+app.use('/api/schedule', scheduleRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
