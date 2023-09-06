@@ -95,7 +95,7 @@ export const remove = async (req, res, next) => {
       },
     );
 
-    res.status(statusCode.OK).end();
+    res.status(statusCode.NO_CONTENT).end();
   } catch (err) {
     console.log(err);
     next(err);
