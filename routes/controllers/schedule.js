@@ -19,6 +19,7 @@ export const toggleDone = async (req, res, next) => {
     const tracker = await Tracker.findById(toggled.tracker._id)
       .populate('user', 'color emoji name profileId')
       .populate('cheers', 'color emoji name profileId')
+      .populate('tags', 'text')
       .populate({
         path: 'schedules',
         options: { sort: { date: 1 } },
@@ -43,6 +44,7 @@ export const toggleDone = async (req, res, next) => {
         populate: [
           { path: 'schedules', select: 'date isDone' },
           { path: 'user', select: 'profileId emoji name color' },
+          { path: 'tags', select: 'text' },
         ],
       });
 
@@ -79,6 +81,7 @@ export const cheer = async (req, res, next) => {
     )
       .populate('user', 'color emoji name profileId')
       .populate('cheers', 'color emoji name profileId')
+      .populate('tags', 'text')
       .populate({
         path: 'schedules',
         options: { sort: { date: 1 } },

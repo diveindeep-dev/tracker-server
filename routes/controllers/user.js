@@ -23,7 +23,6 @@ export const editProfile = async (req, res, next) => {
   }
 };
 
-
 export const getUser = async (req, res, next) => {
   try {
     const user = await User.findOne(
@@ -36,6 +35,7 @@ export const getUser = async (req, res, next) => {
         populate: [
           { path: 'user', select: 'color emoji name profileId' },
           { path: 'schedules', select: 'isDone date' },
+          { path: 'tags', select: 'text' },
         ],
       })
       .populate({

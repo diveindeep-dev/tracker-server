@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
     color: { type: String, require: true },
     emoji: { type: String, require: true },
     trackers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tracker' }],
-    followings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
     schedules: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' }],
   },
   {
