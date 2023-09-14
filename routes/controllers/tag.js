@@ -4,10 +4,9 @@ import { statusCode } from '../../config/index.js';
 
 export const getAll = async (req, res, next) => {
   try {
-    const tags = await Tag.find(
-      { 'trackers.0': { $exists: true } },
-      'text',
-    ).limit(20);
+    const tags = await Tag.find({ 'trackers.0': { $exists: true } }, 'text')
+      .sort({ updated_at: -1 })
+      .limit(20);
     res.status(statusCode.OK).json({
       tags,
     });
